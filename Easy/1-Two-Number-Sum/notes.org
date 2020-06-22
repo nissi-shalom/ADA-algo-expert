@@ -1,0 +1,92 @@
+* Problem statement
+** Array of distinct values [3, 5, -4, 8, 11, 1, -1, 6].
+** Saperate integer which represents target sum (10).
+** Write a function which tells wether or not there is a pair that sums up to target number [11, -1].
+** O(N^2) is not allowed.
+* Solution 1
+** Iterate once, and use a hash table.
+** x (iterating element) + y (which satisfies the sum) = target
+** y = target - x
+*** Example:
+**** Itr (1)
+***** 10 - 3 = 7
+***** As 7 is not there in the hash table, add 7.
+#+BEGIN_SRC json
+  {
+      7: true,
+  }
+#+END_SRC
+**** Itr (2)
+***** 10 - 5 = 5
+#+BEGIN_SRC json
+  {
+      7: true,
+      5: true,
+  }
+#+END_SRC
+**** Itr (3)
+***** 10 - (-4) = 14
+#+BEGIN_SRC json
+  {
+      7: true,
+      5: true,
+      14: true,
+  }
+#+END_SRC
+**** Itr (8)
+***** 10 - (8) = 2
+#+BEGIN_SRC json
+  {
+      7: true,
+      5: true,
+      14: true,
+      2: true,
+  }
+#+END_SRC
+
+**** Itr (8)
+***** 10 - (11) = -1
+#+BEGIN_SRC json
+  {
+      7: true,
+      5: true,
+      14: true,
+      2: true,
+      -1: true
+  }
+#+END_SRC
+
+**** Itr (8)
+***** 10 - (1) = 9
+#+BEGIN_SRC json
+  {
+      7: true,
+      5: true,
+      14: true,
+      2: true,
+      -1: true,
+      9: true,
+  }
+#+END_SRC
+
+**** Itr (8)
+***** 10 - (-1) = 11
+***** As 11 is already there in hash table, return -1.
+** Time and Space complexity
+*** Time
+**** O(N) Becuase we are traversing once and calculating y (which takes constant time).
+*** Space
+**** O(N) Because we are inserting values in our hash table nearly N times.
+* Solution 2
+** Sort the array (Good sorting [like quick, merge and heap sort] algorithm will take O(N.log(N)) time).
+** Put a left pointer at index 0 of the array [L].
+** Put a right pointer at index N-1 of the array [R].
+** Sum up the value of array[L] and array[R], and check whether they sum to target number or not.
+** If not the sum is not equal to target, we have to move one of the pointer.
+*** If the sum is less than target, then if you move the right pointer to left, it's obvious that the sum will be lesser than target. So, we move the left pointer to right.
+*** If the sum is more than target, then if you move the left pointer to right, it is obvious that the som will be greater than target. So, we move the right pointer to left.
+** Time and space complexity.
+*** Space
+**** Constant space. In this method we don't use any additional space.
+*** Time
+**** O(N.log(N)) for sorting and O(N) for moving the pointers.
