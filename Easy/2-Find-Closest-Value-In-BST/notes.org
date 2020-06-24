@@ -1,0 +1,29 @@
+** Problem statement:
+*In a given binary search tree (BST) find the closest value for the given target integer value*
+example:
+       *BST*
+        10
+    5       15
+   2  5   13   22
+  1         14
+Target: *12*
+** Solution:
+1. Initialize a variable which keeps track of the closest value in the BST and continuely update it.
+   - closest = infinity
+   - This value will be updated with the best candidate after we apply the algorithm.
+2. The algorithm is:
+   - Start with the head. Calcuate the absolute different between the current node and target.
+   - Compare that value with absolute difference of closest (infinity) value and target. Select the minimum among two and update the closest with current node. (|closest - 12| = infinity, |current node - target| = some number)
+   - Because it's a BST, we take advantage of it's property by comparing the two values. What are those values? Current node and target node.
+   - Every number to the left of current node is lesser than current node and every number to the right of current node is greater than current node.
+   - As we can see in the example BST, moving left to the node 10 will get us away from the target value, but moving right will bring us near to the target value
+   - repeate this procedure till we hit the null value (leaf node) or till we reach the target value and return the current node.
+3. Space and time complexity
+   1) Time
+      - On Average O(log(N)). (BST)
+      - Worst case O(N). (A tree with one branch)
+   2) Space
+      + Implementing using recursive method. /Frames of call stack comes into play/
+        - On Average O(log(D)), where D is the deapth of the tree.
+        - Worst case O(log(N)). Tree with one branch will have D = N.
+      + Implementing using iterative method will take O(1) space as we are only using some variables to store certain values which is constant space complexity.
