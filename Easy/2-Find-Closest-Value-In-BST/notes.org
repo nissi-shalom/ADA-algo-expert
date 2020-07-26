@@ -1,19 +1,15 @@
 ** Problem statement:
 *In a given binary search tree (BST) find the closest value for the given target integer value*
 example:
-       *BST*
-        10
-    5       15
-   2  5   13   22
-  1         14
-Target: *12*
+       *BST* 1 2 5 5 10 13 14 15 22
+       Target: *12*
 ** Solution:
 1. Initialize a variable which keeps track of the closest value in the BST and continuely update it.
    - closest = infinity
    - This value will be updated with the best candidate after we apply the algorithm.
 2. The algorithm is:
    - Start with the head. Calcuate the absolute different between the current node and target.
-   - Compare that value with absolute difference of closest (infinity) value and target. Select the minimum among two and update the closest with current node. (|closest - 12| = infinity, |current node - target| = some number)
+   - Compare that value with absolute difference of closest (infinity) value and target. Select the minimum among of two and update the closest with current node. (|closest - 12| = infinity, |current node - target| = some number)
    - Because it's a BST, we take advantage of it's property by comparing the two values. What are those values? Current node and target node.
    - Every number to the left of current node is lesser than current node and every number to the right of current node is greater than current node.
    - As we can see in the example BST, moving left to the node 10 will get us away from the target value, but moving right will bring us near to the target value
